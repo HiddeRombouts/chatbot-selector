@@ -475,23 +475,7 @@ with st.expander("🎨 Afbeeldingen Genereren Tools Overzicht"):
     else:
         st.info("Geen chatbots met beeldgeneratie gevonden.")
 
-# Installatie instructies
-with st.expander("🚀 Hoe deze app te draaien"):
-    st.markdown("### Installatie stappen:")
-    st.markdown("1. **Installeer Python** (versie 3.8 of hoger)")
-    st.markdown("2. **Installeer Streamlit:**")
-    st.code("pip install streamlit pandas")
-    st.markdown("3. **Sla de code op** als `chatbot_selector.py`")
-    st.markdown("4. **Start de app:**")
-    st.code("streamlit run chatbot_selector.py")
-    st.markdown("5. **Open je browser** op `http://localhost:8501`")
-    
-    st.markdown("### Nieuwe features:")
-    st.markdown("- 🎨 **Afbeeldingen genereren** optie toegevoegd")
-    st.markdown("- 🤖 **2 nieuwe chatbots:** Midjourney & Leonardo.AI")
-    st.markdown("- 📊 **Beeldgeneratie vergelijkingstabel**")
-    st.markdown("- 💡 **Tips per tool** voor betere resultaten")
-    st.markdown("- 🔄 **Verbeterde alternatieven** weergave")
+
 
 # Voeg wat CSS toe voor betere styling
 st.markdown("""
@@ -515,7 +499,7 @@ st.markdown("""
         color: #1e3a8a;
     }
     div[data-testid="stExpander"] {
-        background-color: #f8f9fa;
+        background-color: #042b5e;
         border-radius: 10px;
         padding: 10px;
         margin: 10px 0;
