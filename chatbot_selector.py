@@ -13,45 +13,96 @@ st.title("🤖 Chatbot Selectie Assistent")
 st.markdown("### Welke chatbot past het beste bij jouw taak?")
 st.markdown("Deze tool helpt je de ideale AI-assistent te kiezen op basis van wat je wilt doen.")
 
-# Chatbot informatie database
+# Chatbot informatie database - UITGEBREID MET AFBEELDINGEN OPTIES
 chatbots = {
     "ChatGPT": {
-        "sterkte": "Gebruiksvriendelijk, creatief, goed in nuance en menselijke interactie",
-        "zwakte": "Niet altijd 100% nauwkeurig, soms te voorzichtig",
-        "best_voor": ["Advies", "Verhalen", "Creatieve opdrachten", "Samenvatten", "Algemene gesprekken"],
+        "sterkte": "Gebruiksvriendelijk, creatief, goed in nuance en menselijke interactie, DALL-E 3 voor afbeeldingen",
+        "zwakte": "Niet altijd 100% nauwkeurig, soms te voorzichtig, DALL-E heeft beperkingen voor bepaalde inhoud",
+        "best_voor": ["Advies", "Verhalen", "Creatieve opdrachten", "Samenvatten", "Algemene gesprekken", "DALL-E 3 afbeeldingen"],
         "prijs": "Gratis of €23/maand (Plus) / €229/maand (Team)",
+        "afbeeldingen": "✅ DALL-E 3 (Plus abonnement nodig)",
         "kleur": "#74aa9c",
-        "link": "https://chat.openai.com"
+        "link": "https://chat.openai.com",
+        "img_guide": "Gebruik DALL-E 3 in ChatGPT Plus voor realistische en creatieve afbeeldingen",
+        "img_tools": ["DALL-E 3", "GPT-4o Vision"]
     },
     "Gemini": {
-        "sterkte": "Enorm contextvenster, Google integratie, uitstekende beeldherkenning",
-        "zwakte": "Soms overdreven voorzichtig, interface kan rommelig zijn",
-        "best_voor": ["Grote documenten", "Google Apps", "Beeldanalyse", "Creatief schrijven met feiten"],
+        "sterkte": "Enorm contextvenster, Google integratie, uitstekende beeldherkenning, ImageFX voor afbeeldingen",
+        "zwakte": "Soms overdreven voorzichtig, interface kan rommelig zijn, beperkte beeldgeneratie",
+        "best_voor": ["Grote documenten", "Google Apps", "Beeldanalyse", "Creatief schrijven met feiten", "Google ImageFX"],
         "prijs": "Gratis of €22/maand (Advanced)",
+        "afbeeldingen": "✅ ImageFX (experimenteel) & Vertex AI",
         "kleur": "#4285f4",
-        "link": "https://gemini.google.com"
+        "link": "https://gemini.google.com",
+        "img_guide": "ImageFX in AI Studio voor experimentele beeldgeneratie, of Vertex AI voor professioneel gebruik",
+        "img_tools": ["ImageFX", "Vertex AI", "Imagen 3"]
     },
     "Deepseek": {
         "sterkte": "Uitzonderlijk in programmeren, wiskunde, logica, goedkope API",
-        "zwakte": "Minder 'gezellig', minder visuele features",
+        "zwakte": "Minder 'gezellig', minder visuele features, GEEN ingebouwde beeldgeneratie",
         "best_voor": ["Coderen", "Debuggen", "Wiskunde", "Technische documentatie", "Logische puzzels"],
         "prijs": "Gratis of zeer goedkope API",
+        "afbeeldingen": "❌ Geen ingebouwde beeldgeneratie",
         "kleur": "#ff6b35",
-        "link": "https://chat.deepseek.com"
+        "link": "https://chat.deepseek.com",
+        "img_guide": "Deepseek heeft geen beeldgeneratie. Gebruik in combinatie met DALL-E, Midjourney of Stable Diffusion",
+        "img_tools": ["Geen"]
     },
     "Perplexity": {
-        "sterkte": "Real-time internet, bronvermelding, feitenchecks, onderzoek",
-        "zwakte": "Droge tekststijl, minder creatief",
-        "best_voor": ["Academisch onderzoek", "Nieuws", "Feitenchecks", "Web samenvattingen"],
+        "sterkte": "Real-time internet, bronvermelding, feitenchecks, onderzoek, Pro versie met beeldgeneratie",
+        "zwakte": "Droge tekststijl, minder creatief, beeldgeneratie alleen in Pro versie",
+        "best_voor": ["Academisch onderzoek", "Nieuws", "Feitenchecks", "Web samenvattingen", "Onderzoek + afbeeldingen"],
         "prijs": "Gratis of €20/maand (Pro)",
+        "afbeeldingen": "✅ Pro versie (meerdere modellen)",
         "kleur": "#6c5ce7",
-        "link": "https://www.perplexity.ai"
+        "link": "https://www.perplexity.ai",
+        "img_guide": "Perplexity Pro kan schakelen tussen modellen die beeldgeneratie ondersteunen",
+        "img_tools": ["GPT-4o", "Claude 3.5", "DALL-E via integratie"]
+    },
+    "Midjourney": {
+        "sterkte": "Beste kwaliteit beeldgeneratie, artistieke stijlen, zeer creatief, sterke community",
+        "zwakte": "Alleen via Discord, geen chat interface, moeilijk te leren, duur",
+        "best_voor": ["Artistieke afbeeldingen", "Concept art", "Fotorealistische beelden", "Design"],
+        "prijs": "$10-$120/maand",
+        "afbeeldingen": "✅ Gespecialiseerd in beeldgeneratie",
+        "kleur": "#1e1e1e",
+        "link": "https://www.midjourney.com",
+        "img_guide": "Gebruik via Discord, bekende voor hoge kwaliteit artistieke afbeeldingen",
+        "img_tools": ["Midjourney V6", "Niji (anime)"]
+    },
+    "Leonardo.AI": {
+        "sterkte": "Zeer controleerbare beeldgeneratie, veel aanpasbare modellen, gratis tier beschikbaar",
+        "zwakte": "Minder bekend, kwaliteit soms inconsistent",
+        "best_voor": ["Gratis beeldgeneratie", "Aangepaste modellen", "Consistentie tussen beelden"],
+        "prijs": "Gratis (beperkt) of $10-$48/maand",
+        "afbeeldingen": "✅ Gespecialiseerd in beeldgeneratie",
+        "kleur": "#ff6b00",
+        "link": "https://leonardo.ai",
+        "img_guide": "Goed voor gratis gebruik en controle over beeldstijlen/models",
+        "img_tools": ["Meerdere Stable Diffusion modellen"]
     }
 }
 
-# Functie voor beslisboom logica
+# Functie voor beslisboom logica - UITGEBREID MET AFBEELDINGEN
 def bepaal_beste_chatbot(antwoorden):
     hoofddoel = antwoorden.get("hoofddoel")
+    
+    # SPECIALE CASE: Afbeeldingen genereren
+    if hoofddoel == "G":  # Nieuwe optie voor afbeeldingen
+        img_type = antwoorden.get("img_type")
+        
+        if img_type == "G1":  # Artistiek/creatief
+            return "Midjourney", "Midjourney is de beste voor artistieke en creatieve afbeeldingen van hoge kwaliteit."
+        elif img_type == "G2":  # Fotorealistisch
+            return "Midjourney", "Midjourney V6 is uitstekend voor fotorealistische beelden."
+        elif img_type == "G3":  # Gratis optie
+            return "Leonardo.AI", "Leonardo.AI heeft een goede gratis tier voor beeldgeneratie."
+        elif img_type == "G4":  # Binnen chat interface
+            return "ChatGPT", "ChatGPT met DALL-E 3 integreert beeldgeneratie in de chat interface."
+        elif img_type == "G5":  # Technische/diagrammen
+            return "ChatGPT", "ChatGPT kan diagrammen en technische afbeeldingen goed genereren."
+        else:  # Algemene afbeeldingen
+            return "Midjourney", "Midjourney is de industrie standaard voor AI beeldgeneratie."
     
     if hoofddoel == "A":  # Code en programmeren
         subcode = antwoorden.get("subcode")
@@ -85,7 +136,11 @@ def bepaal_beste_chatbot(antwoorden):
             return "Deepseek", "Deepseek heeft een goede API voor IDE integratie en is kostenefficiënt."
     
     elif hoofddoel == "B":  # Creatieve content
-        return "ChatGPT", "ChatGPT is het beste in creatief schrijven, verhalen en menselijke taal."
+        creative_type = antwoorden.get("creative_type", "B1")
+        if creative_type == "B5":  # Creatief MET afbeeldingen
+            return "ChatGPT", "ChatGPT combineert creatief schrijven met DALL-E 3 beeldgeneratie."
+        else:
+            return "ChatGPT", "ChatGPT is het beste in creatief schrijven, verhalen en menselijke taal."
     
     elif hoofddoel == "C":  # Documenten analyseren
         doc_type = antwoorden.get("doc_type")
@@ -131,6 +186,7 @@ with st.sidebar:
                 st.markdown(f"**Sterkte:** {info['sterkte']}")
                 st.markdown(f"**Zwakte:** {info['zwakte']}")
                 st.markdown(f"**Best voor:** {', '.join(info['best_voor'])}")
+                st.markdown(f"**Afbeeldingen:** {info['afbeeldingen']}")
                 st.markdown(f"**Prijs:** {info['prijs']}")
                 st.markdown(f"[Open {naam}]({info['link']})")
     else:
@@ -138,13 +194,14 @@ with st.sidebar:
         st.markdown(f"### {selected_chatbot}")
         st.markdown(f"**Sterkte:** {info['sterkte']}")
         st.markdown(f"**Zwakte:** {info['zwakte']}")
+        st.markdown(f"**Afbeeldingen:** {info['afbeeldingen']}")
         st.markdown(f"**Best voor:**")
         for item in info['best_voor']:
             st.markdown(f"- {item}")
         st.markdown(f"**Prijs:** {info['prijs']}")
         st.markdown(f"[Open {selected_chatbot}]({info['link']})")
 
-# Hoofdinhoud - Stap 1: Hoofddoel
+# Hoofdinhoud - Stap 1: Hoofddoel (UITGEBREID)
 st.header("Stap 1: Wat is je hoofddoel?")
 hoofddoel = st.radio(
     "Selecteer je hoofdtaak:",
@@ -154,7 +211,8 @@ hoofddoel = st.radio(
         "C) Documenten/tekst analyseren", 
         "D) Onderzoek & feitencheck",
         "E) Algemeen gesprek / advies",
-        "F) Wiskunde & data-analyse"
+        "F) Wiskunde & data-analyse",
+        "G) Afbeeldingen genereren 🎨"  # NIEUWE OPTIE
     ],
     key="hoofddoel"
 )
@@ -216,6 +274,21 @@ if hoofddoel.startswith("A"):  # Code
         )
         antwoorden["opti_type"] = opti_type[0:3]
 
+elif hoofddoel.startswith("B"):  # Creatieve content (UITGEBREID)
+    st.header("Stap 2: Wat voor creatieve content?")
+    creative_type = st.radio(
+        "Selecteer type creatieve content:",
+        [
+            "B1) Verhalen/scripts schrijven",
+            "B2) Marketing teksten/branding",
+            "B3) Ideeën brainstormen",
+            "B4) Gedichten/artistieke tekst",
+            "B5) Creatieve content MET afbeeldingen 🎨"  # NIEUWE OPTIE
+        ],
+        key="creative_type"
+    )
+    antwoorden["creative_type"] = creative_type[0:2]
+
 elif hoofddoel.startswith("C"):  # Documenten
     st.header("Stap 2: Type documentanalyse?")
     doc_type = st.radio(
@@ -243,6 +316,22 @@ elif hoofddoel.startswith("F"):  # Wiskunde
         key="wisk_type"
     )
     antwoorden["wisk_type"] = wisk_type[0:2]
+
+elif hoofddoel.startswith("G"):  # NIEUWE OPTIE: Afbeeldingen genereren
+    st.header("🎨 Stap 2: Wat voor afbeeldingen wil je genereren?")
+    img_type = st.radio(
+        "Selecteer type afbeelding:",
+        [
+            "G1) Artistieke/creatieve afbeeldingen",
+            "G2) Fotorealistische beelden",
+            "G3) Gratis optie (budget)",
+            "G4) Binnen chat interface (geïntegreerd)",
+            "G5) Technische afbeeldingen/diagrammen",
+            "G6) Algemene afbeeldingen"
+        ],
+        key="img_type"
+    )
+    antwoorden["img_type"] = img_type[0:2]
 
 # Toon resultaat
 if st.button("🔍 Bepaal beste chatbot", type="primary"):
@@ -277,6 +366,15 @@ if st.button("🔍 Bepaal beste chatbot", type="primary"):
         st.markdown("**Zwakke punten:**")
         st.warning(chatbot_info['zwakte'])
         
+        # Toon afbeeldingen info specifiek
+        st.markdown("**Afbeeldingen genereren:**")
+        if chatbot_info['afbeeldingen'].startswith("✅"):
+            st.success(chatbot_info['afbeeldingen'])
+            if 'img_guide' in chatbot_info:
+                st.caption(chatbot_info['img_guide'])
+        else:
+            st.error(chatbot_info['afbeeldingen'])
+        
         st.markdown("**Prijs:**")
         st.code(chatbot_info['prijs'])
     
@@ -284,29 +382,116 @@ if st.button("🔍 Bepaal beste chatbot", type="primary"):
     st.markdown("### 🚀 Snel actie ondernemen")
     st.markdown(f"**[Open direct {chatbot_naam}]({chatbot_info['link']})**")
     
+    # Toon afbeeldingen-specifieke tips als relevant
+    if hoofddoel.startswith("G") or (hoofddoel.startswith("B") and antwoorden.get("creative_type") == "B5"):
+        with st.expander("💡 Tips voor afbeeldingen genereren"):
+            if chatbot_naam == "Midjourney":
+                st.markdown("""
+                **Midjourney Tips:**
+                - Gebruik `/imagine` command in Discord
+                - Voeg style keywords toe zoals `--v 6.0` voor versie 6
+                - Gebruik `--ar 16:9` voor landscape of `--ar 9:16` voor portrait
+                - Experimenteer met `--style raw` voor meer controle
+                """)
+            elif chatbot_naam == "ChatGPT":
+                st.markdown("""
+                **ChatGPT DALL-E Tips:**
+                - Wees specifiek in je beschrijvingen
+                - Gebruik DALL-E 3 voor beste kwaliteit
+                - Vraag om aanpassingen in dezelfde chat
+                - Combineer met tekst voor complete content
+                """)
+            elif chatbot_naam == "Leonardo.AI":
+                st.markdown("""
+                **Leonardo.AI Tips:**
+                - Maak gebruik van de gratis dagelijkse tokens
+                - Experimenteer met verschillende modellen
+                - Gebruik Alchemy voor betere kwaliteit
+                - Pas Image Guidance aan voor meer controle
+                """)
+    
     # Alternatieve opties
     st.markdown("### 🔄 Alternatieve opties")
-    alternatieven = [c for c in chatbots.keys() if c != chatbot_naam]
     
-    cols = st.columns(len(alternatieven))
-    for idx, alt in enumerate(alternatieven):
-        with cols[idx]:
-            st.markdown(f"**{alt}**")
-            st.markdown(f"*{chatbots[alt]['sterkte'].split(',')[0]}*")
-            st.markdown(f"[Open {alt}]({chatbots[alt]['link']})")
+    # Voor afbeeldingen, toon specifiek alternatieven
+    if hoofddoel.startswith("G"):
+        image_chatbots = {k: v for k, v in chatbots.items() if v['afbeeldingen'].startswith("✅")}
+        alternatieven = [c for c in image_chatbots.keys() if c != chatbot_naam]
+    else:
+        alternatieven = [c for c in chatbots.keys() if c != chatbot_naam]
+    
+    if alternatieven:
+        cols = st.columns(len(alternatieven))
+        for idx, alt in enumerate(alternatieven):
+            with cols[idx]:
+                st.markdown(f"**{alt}**")
+                st.markdown(f"*{chatbots[alt]['sterkte'].split(',')[0]}*")
+                if chatbots[alt]['afbeeldingen'].startswith("✅"):
+                    st.markdown(f"🎨 {chatbots[alt]['afbeeldingen'].replace('✅ ', '')}")
+                st.markdown(f"[Open {alt}]({chatbots[alt]['link']})")
 
 # Voorbeelden sectie
 with st.expander("📋 Voorbeeld outputs bekijken"):
     st.subheader("Voorbeeld 1: Python code schrijven")
     st.code("Hoofddoel: A) Code en programmeren\nSubdoel: A1) Code schrijven vanaf scratch\nTaal: A1b) Data science (Python/R)\n\n🎯 Aanbevolen Chatbot: Deepseek\n✅ Waarom? Deepseek is uitzonderlijk goed in Python en complexe programmeerlogica.")
     
-    st.subheader("Voorbeeld 2: Onderzoek doen")
-    st.code("Hoofddoel: D) Onderzoek & feitencheck\n\n🎯 Aanbevolen Chatbot: Perplexity\n✅ Waarom? Perplexity heeft real-time internettoegang en geeft bronvermelding.")
+    st.subheader("Voorbeeld 2: Fotorealistische afbeeldingen")
+    st.code("Hoofddoel: G) Afbeeldingen genereren\nSubdoel: G2) Fotorealistische beelden\n\n🎯 Aanbevolen Chatbot: Midjourney\n✅ Waarom? Midjourney V6 is uitstekend voor fotorealistische beelden.")
     
-    st.subheader("Voorbeeld 3: Creatief verhaal schrijven")
-    st.code("Hoofddoel: B) Creatieve content\n\n🎯 Aanbevolen Chatbot: ChatGPT\n✅ Waarom? ChatGPT is het beste in creatief schrijven, verhalen en menselijke taal.")
+    st.subheader("Voorbeeld 3: Creatief schrijven met afbeeldingen")
+    st.code("Hoofddoel: B) Creatieve content\nSubdoel: B5) Creatieve content MET afbeeldingen\n\n🎯 Aanbevolen Chatbot: ChatGPT\n✅ Waarom? ChatGPT combineert creatief schrijven met DALL-E 3 beeldgeneratie.")
+    
+    st.subheader("Voorbeeld 4: Gratis afbeeldingen genereren")
+    st.code("Hoofddoel: G) Afbeeldingen genereren\nSubdoel: G3) Gratis optie (budget)\n\n🎯 Aanbevolen Chatbot: Leonardo.AI\n✅ Waarom? Leonardo.AI heeft een goede gratis tier voor beeldgeneratie.")
 
+# Afbeeldingen vergelijking sectie
+with st.expander("🎨 Afbeeldingen Genereren Tools Overzicht"):
+    st.subheader("Vergelijking AI Beeldgeneratie Tools")
+    
+    # Maak een tabel voor beeldgeneratie
+    img_data = []
+    for naam, info in chatbots.items():
+        if info['afbeeldingen'].startswith("✅"):
+            img_data.append({
+                "Tool": naam,
+                "Afbeeldingen": info['afbeeldingen'].replace("✅ ", ""),
+                "Prijs": info['prijs'],
+                "Best voor": ", ".join(info['best_voor'][:3]),
+                "Link": info['link']
+            })
+    
+    if img_data:
+        df = pd.DataFrame(img_data)
+        st.dataframe(df, use_container_width=True, hide_index=True)
+        
+        st.markdown("**🎯 Snelle keuze gids:**")
+        st.markdown("""
+        - **Beste kwaliteit:** Midjourney
+        - **Beste geïntegreerd in chat:** ChatGPT (DALL-E 3)
+        - **Beste gratis optie:** Leonardo.AI
+        - **Beste voor onderzoek:** Perplexity Pro
+        - **Beste Google ecosysteem:** Gemini (ImageFX)
+        """)
+    else:
+        st.info("Geen chatbots met beeldgeneratie gevonden.")
 
+# Installatie instructies
+with st.expander("🚀 Hoe deze app te draaien"):
+    st.markdown("### Installatie stappen:")
+    st.markdown("1. **Installeer Python** (versie 3.8 of hoger)")
+    st.markdown("2. **Installeer Streamlit:**")
+    st.code("pip install streamlit pandas")
+    st.markdown("3. **Sla de code op** als `chatbot_selector.py`")
+    st.markdown("4. **Start de app:**")
+    st.code("streamlit run chatbot_selector.py")
+    st.markdown("5. **Open je browser** op `http://localhost:8501`")
+    
+    st.markdown("### Nieuwe features:")
+    st.markdown("- 🎨 **Afbeeldingen genereren** optie toegevoegd")
+    st.markdown("- 🤖 **2 nieuwe chatbots:** Midjourney & Leonardo.AI")
+    st.markdown("- 📊 **Beeldgeneratie vergelijkingstabel**")
+    st.markdown("- 💡 **Tips per tool** voor betere resultaten")
+    st.markdown("- 🔄 **Verbeterde alternatieven** weergave")
 
 # Voeg wat CSS toe voor betere styling
 st.markdown("""
@@ -329,5 +514,19 @@ st.markdown("""
     h1, h2, h3 {
         color: #1e3a8a;
     }
+    div[data-testid="stExpander"] {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px 0;
+    }
 </style>
+""", unsafe_allow_html=True)
+
+# Footer
+st.markdown("---")
+st.markdown("""
+<div style='text-align: center; color: #666;'>
+    <p>🤖 Chatbot Selectie Assistent v2.0 | Nu met afbeeldingen generatie opties 🎨</p>
+</div>
 """, unsafe_allow_html=True)
