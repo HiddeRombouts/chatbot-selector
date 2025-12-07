@@ -306,24 +306,7 @@ with st.expander("📋 Voorbeeld outputs bekijken"):
     st.subheader("Voorbeeld 3: Creatief verhaal schrijven")
     st.code("Hoofddoel: B) Creatieve content\n\n🎯 Aanbevolen Chatbot: ChatGPT\n✅ Waarom? ChatGPT is het beste in creatief schrijven, verhalen en menselijke taal.")
 
-# Installatie instructies
-with st.expander("🚀 Hoe deze app te draaien"):
-    st.markdown("### Installatie stappen:")
-    st.markdown("1. **Installeer Python** (versie 3.8 of hoger)")
-    st.markdown("2. **Installeer Streamlit:**")
-    st.code("pip install streamlit pandas")
-    st.markdown("3. **Sla de code op** als `chatbot_selector.py`")
-    st.markdown("4. **Start de app:**")
-    st.code("streamlit run chatbot_selector.py")
-    st.markdown("5. **Open je browser** op `http://localhost:8501`")
-    
-    st.markdown("### Features:")
-    st.markdown("- 📱 Responsive web interface")
-    st.markdown("- 🤖 Compleet overzicht van alle chatbots")
-    st.markdown("- 🔍 Intelligente beslisboom logica")
-    st.markdown("- ⚡ Directe links naar chatbots")
-    st.markdown("- 📊 Vergelijkingstabel in sidebar")
-    st.markdown("- 🎨 Kleurgecodeerde resultaten")
+
 
 # Voeg wat CSS toe voor betere styling
 st.markdown("""
