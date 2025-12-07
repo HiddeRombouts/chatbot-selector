@@ -10,10 +10,8 @@ st.set_page_config(
 
 # Titel en introductie
 st.title("🤖 Chatbot Selectie Assistent")
-st.markdown("""
-### Welke chatbot past het beste bij jouw taak?
-Deze tool helpt je de ideale AI-assistent te kiezen op basis van wat je wilt doen.
-""")
+st.markdown("### Welke chatbot past het beste bij jouw taak?")
+st.markdown("Deze tool helpt je de ideale AI-assistent te kiezen op basis van wat je wilt doen.")
 
 # Chatbot informatie database
 chatbots = {
@@ -300,38 +298,53 @@ if st.button("🔍 Bepaal beste chatbot", type="primary"):
 # Voorbeelden sectie
 with st.expander("📋 Voorbeeld outputs bekijken"):
     st.subheader("Voorbeeld 1: Python code schrijven")
-    st.code("""
-Hoofddoel: A) Code en programmeren
-Subdoel: A1) Code schrijven vanaf scratch
-Taal: A1b) Data science (Python/R)
-
-🎯 Aanbevolen Chatbot: Deepseek
-✅ Waarom? Deepseek is uitzonderlijk goed in Python en complexe programmeerlogica.
-    """)
+    st.code("Hoofddoel: A) Code en programmeren\nSubdoel: A1) Code schrijven vanaf scratch\nTaal: A1b) Data science (Python/R)\n\n🎯 Aanbevolen Chatbot: Deepseek\n✅ Waarom? Deepseek is uitzonderlijk goed in Python en complexe programmeerlogica.")
     
     st.subheader("Voorbeeld 2: Onderzoek doen")
-    st.code("""
-Hoofddoel: D) Onderzoek & feitencheck
-
-🎯 Aanbevolen Chatbot: Perplexity
-✅ Waarom? Perplexity heeft real-time internettoegang en geeft bronvermelding.
-    """)
+    st.code("Hoofddoel: D) Onderzoek & feitencheck\n\n🎯 Aanbevolen Chatbot: Perplexity\n✅ Waarom? Perplexity heeft real-time internettoegang en geeft bronvermelding.")
     
     st.subheader("Voorbeeld 3: Creatief verhaal schrijven")
-    st.code("""
-Hoofddoel: B) Creatieve content
-
-🎯 Aanbevolen Chatbot: ChatGPT
-✅ Waarom? ChatGPT is het beste in creatief schrijven, verhalen en menselijke taal.
-    """)
+    st.code("Hoofddoel: B) Creatieve content\n\n🎯 Aanbevolen Chatbot: ChatGPT\n✅ Waarom? ChatGPT is het beste in creatief schrijven, verhalen en menselijke taal.")
 
 # Installatie instructies
 with st.expander("🚀 Hoe deze app te draaien"):
-    st.markdown("""
-### Installatie stappen:
+    st.markdown("### Installatie stappen:")
+    st.markdown("1. **Installeer Python** (versie 3.8 of hoger)")
+    st.markdown("2. **Installeer Streamlit:**")
+    st.code("pip install streamlit pandas")
+    st.markdown("3. **Sla de code op** als `chatbot_selector.py`")
+    st.markdown("4. **Start de app:**")
+    st.code("streamlit run chatbot_selector.py")
+    st.markdown("5. **Open je browser** op `http://localhost:8501`")
+    
+    st.markdown("### Features:")
+    st.markdown("- 📱 Responsive web interface")
+    st.markdown("- 🤖 Compleet overzicht van alle chatbots")
+    st.markdown("- 🔍 Intelligente beslisboom logica")
+    st.markdown("- ⚡ Directe links naar chatbots")
+    st.markdown("- 📊 Vergelijkingstabel in sidebar")
+    st.markdown("- 🎨 Kleurgecodeerde resultaten")
 
-1. **Installeer Python** (versie 3.8 of hoger)
-
-2. **Installeer Streamlit:**
-```bash
-pip install streamlit pandas
+# Voeg wat CSS toe voor betere styling
+st.markdown("""
+<style>
+    .stButton > button {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        padding: 10px 24px;
+    }
+    .stRadio > label {
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px 0;
+    }
+    .stRadio > label:hover {
+        background-color: #f0f2f6;
+    }
+    h1, h2, h3 {
+        color: #1e3a8a;
+    }
+</style>
+""", unsafe_allow_html=True)
