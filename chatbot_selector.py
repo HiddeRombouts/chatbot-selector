@@ -499,7 +499,7 @@ st.markdown("""
         color: #1e3a8a;
     }
     div[data-testid="stExpander"] {
-        background-color: #042b5e;
+        background-color: #22344a;
         border-radius: 10px;
         padding: 10px;
         margin: 10px 0;
